@@ -1,0 +1,30 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    height: 600px;
+    max-width: 520px;
+    flex-direction: column;
+}
+
+.display {
+    height: 80px;
+    width: auto;
+    background-color: rgb(74, 131, 131);
+}
+
+.keyboard {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    padding: 50px;
+    margin: 2px;
+    width: 120px;
+}
