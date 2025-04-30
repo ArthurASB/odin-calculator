@@ -1,8 +1,6 @@
 /*
-- CRIAR MANEIRA DE ESCUTAR OS BOTOES E IMPRIMÍ-LOS NO DISPLAY (query o div e criar texto nele?)
 - CRIAR LIMITE DE DIGITOS NO DISPLAY
 - ARMAZENAR O VALOR DIGITADO E FAZER O CALCULO (QUANDO UM OPERADOR OU = for apertado)
-- CRIAR MANEIRA DE LIMPAR O DISPLAY COM O BOTAO CLEAR
 
 
 */
@@ -45,3 +43,21 @@ function operate (fstNum, operator, secNum){
             break;
     }
 }
+
+display = document.querySelector(".display");
+kb = document.querySelector(".keyboard");
+buttons = document.querySelectorAll(".numerals");
+clearScreen = kb.querySelector("#clear");
+
+display.textContent = "";
+
+clearScreen.addEventListener("click", () => {
+    display.textContent = "";
+})
+
+//varrendo o NodeList "buttons" para poder acessá-los individualmente
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        display.textContent += button.textContent;
+    })    
+});
