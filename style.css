@@ -9,22 +9,45 @@ body {
     height: 600px;
     max-width: 520px;
     flex-direction: column;
+    background-color: rgb(52, 49, 82);
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
 }
 
 .display {
     height: 80px;
-    width: auto;
-    background-color: rgb(74, 131, 131);
+    /* align-self: center; */
+    width: 90%;
+    background-color: rgb(160, 175, 170);
+    margin-top: 3px;
+    text-align: right;
+    font-size: 60px;
 }
 
 .keyboard {
+    height: 610px;
     flex-wrap: wrap;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 button {
-    padding: 50px;
+    text-align: center;
+    font-size: 40px;
+    padding: 10px;
     margin: 2px;
-    width: 120px;
+    width: 23%;
+    flex-grow: 1;
+    background-color: white;
+    border-radius: 35% 35% 50% 50%;
+}
+
+button:hover {
+    background-color: cadetblue;
+    color: white;
+}
+
+button:active{
+    background-color: grey;
 }

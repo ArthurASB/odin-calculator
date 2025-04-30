@@ -1,3 +1,12 @@
+/*
+- CRIAR MANEIRA DE ESCUTAR OS BOTOES E IMPRIMÍ-LOS NO DISPLAY (query o div e criar texto nele?)
+- CRIAR LIMITE DE DIGITOS NO DISPLAY
+- ARMAZENAR O VALOR DIGITADO E FAZER O CALCULO (QUANDO UM OPERADOR OU = for apertado)
+- CRIAR MANEIRA DE LIMPAR O DISPLAY COM O BOTAO CLEAR
+
+
+*/
+
 function calcAdd (fstNum,secNum){
     return fstNum + secNum;
 }
