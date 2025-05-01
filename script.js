@@ -1,10 +1,3 @@
-/*
-- CRIAR LIMITE DE DIGITOS NO DISPLAY
-- ARMAZENAR O VALOR DIGITADO E FAZER O CALCULO (QUANDO UM OPERADOR OU = for apertado)
-
-
-*/
-
 function calcAdd (fstNum,secNum){
     return fstNum + secNum;
 }
@@ -24,40 +17,63 @@ function calcDiv (fstNum,secNum){
 function operate (fstNum, operator, secNum){
     switch (operator) {
         case '+':
-            calcAdd (fstNum, secNum)
-            break;
+            return calcAdd (fstNum, secNum)
         
         case '-':
-            calcSub (fstNum, secNum)
-            break;
+            return calcSub (fstNum, secNum)
         
         case '*':
-            calcMul (fstNum, secNum)
-            break;
+            return calcMul (fstNum, secNum)
         
         case '/':
-            calcDiv (fstNum, secNum)
-            break;
-    
-        default:
-            break;
+            return calcDiv (fstNum, secNum)
     }
 }
 
+
+let fstOperand = 0;
+let sndOperand = 0;
+let opertr = 0;
+let oprToggle = 0;
+
+
 display = document.querySelector(".display");
 kb = document.querySelector(".keyboard");
-buttons = document.querySelectorAll(".numerals");
+numbers = document.querySelectorAll(".numerals");
+opps = document.querySelectorAll(".operators");
 clearScreen = kb.querySelector("#clear");
 
-display.textContent = "";
+
+display.textContent = "0";
 
 clearScreen.addEventListener("click", () => {
-    display.textContent = "";
+    display.textContent = "0";
 })
 
 //varrendo o NodeList "buttons" para poder acessá-los individualmente
-buttons.forEach(button => {
-    button.addEventListener("click", () => {
-        display.textContent += button.textContent;
+numbers.forEach(numbtn => {
+    numbtn.addEventListener("click", () => {
+        if (display.textContent == "0") display.textContent = "";
+        if (fstOperand !== 0 && oprToggle == 0) {
+            display.textContent = "";
+            oprToggle = 1;
+        }
+        if (display.textContent.length <= 12) {            
+            display.textContent += numbtn.textContent;
+        }
     })    
 });
+
+opps.forEach(operator => {
+    operator.addEventListener("click", () => {
+        if (display.textContent !== "0" && fstOperand == 0) {
+            fstOperand = Number(display.textContent);
+            opertr = operator.textContent;
+        } else if (fstOperand !== 0){
+            sndOperand = Number(display.textContent);
+            let result = operate(fstOperand, opertr, sndOperand);
+            display.textContent = "";
+            display.textContent = result          
+        }        
+    })
+})
