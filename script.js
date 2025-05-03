@@ -48,6 +48,10 @@ display.textContent = "0";
 
 clearScreen.addEventListener("click", () => {
     display.textContent = "0";
+    fstOperand = 0;
+    sndOperand = 0;
+    opertr = 0;
+    oprToggle = 0;
 })
 
 //varrendo o NodeList "buttons" para poder acessá-los individualmente
@@ -73,7 +77,9 @@ opps.forEach(operator => {
             sndOperand = Number(display.textContent);
             let result = operate(fstOperand, opertr, sndOperand);
             display.textContent = "";
-            display.textContent = result          
+            display.textContent = result;
+            fstOperand = result;
+            oprToggle = 0;          
         }        
     })
 })
