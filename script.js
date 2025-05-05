@@ -34,7 +34,7 @@ function operate (fstNum, operator, secNum){
 let fstOperand = 0;
 let sndOperand = 0;
 let opertr = 0;
-let oprToggle = 0;
+let opertrToggled = 0;
 
 
 display = document.querySelector(".display");
@@ -43,6 +43,7 @@ numbers = document.querySelectorAll(".numerals");
 opps = document.querySelectorAll(".operators");
 clearScreen = kb.querySelector("#clear");
 equalSign = kb.querySelector("#equal");
+
 
 
 display.textContent = "0";
