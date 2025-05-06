@@ -1,102 +1,77 @@
-function calcAdd (fstNum,secNum){
-    return fstNum + secNum;
-}
-
-function calcSub (fstNum,secNum){
-    return fstNum - secNum;
-}
-
-function calcMul (fstNum,secNum){
-    return fstNum * secNum;
-}
-
-function calcDiv (fstNum,secNum){
-    return fstNum / secNum;
-}
-
 function operate (fstNum, operator, secNum){
     switch (operator) {
         case '+':
-            return calcAdd (fstNum, secNum)
+            return fstNum + secNum
         
         case '-':
-            return calcSub (fstNum, secNum)
+            return fstNum - secNum
         
         case '*':
-            return calcMul (fstNum, secNum)
+            return fstNum * secNum
         
         case '/':
-            return calcDiv (fstNum, secNum)
+            return fstNum / secNum
     }
 }
 
+function evaluate (){
+    secondOperand = Number(display.textContent);
+    let result = operate(firstOperand, currentOperator, secondOperand);
+    display.textContent = result;
+    firstOperand = result;
+    operatorToggled = false;
+}
 
-let fstOperand = 0;
-let sndOperand = 0;
-let opertr = 0;
-let opertrToggled = 0;
+let firstOperand = 0;
+let secondOperand = 0;
+let currentOperator = 0;
+let operatorToggled = false;
 
-
-display = document.querySelector(".display");
-kb = document.querySelector(".keyboard");
-numbers = document.querySelectorAll(".numerals");
-opps = document.querySelectorAll(".operators");
-clearScreen = kb.querySelector("#clear");
-equalSign = kb.querySelector("#equal");
-
+const display = document.querySelector(".display");
+const kb = document.querySelector(".keyboard");
+const numberButtons = document.querySelectorAll(".numerals");
+const operatorButtons = document.querySelectorAll(".operators");
+const clearButton = kb.querySelector("#clear");
+equalButton = kb.querySelector("#equal");
 
 
 display.textContent = "0";
 
-clearScreen.addEventListener("click", () => {
+clearButton.addEventListener("click", () => {
     display.textContent = "0";
-    fstOperand = 0;
-    sndOperand = 0;
-    opertr = 0;
-    opertrToggled = 0;
+    firstOperand = 0;
+    secondOperand = 0;
+    currentOperator = 0;
+    operatorToggled = false;
 })
 
-numbers.forEach(numbtn => {
-    numbtn.addEventListener("click", () => {
+numberButtons.forEach(numberButton => {
+    numberButton.addEventListener("click", () => {
         if (display.textContent == "0") display.textContent = "";
-        if (fstOperand !== 0 && opertrToggled == 0) {
+        if (firstOperand !== 0 && operatorToggled == false) {
             display.textContent = "";
-            opertrToggled = 1;
+            operatorToggled = true;
         }
         if (display.textContent.length <= 12) {            
-            display.textContent += numbtn.textContent;
+            display.textContent += numberButton.textContent;
         }
     })    
 });
 
-opps.forEach(operator => {
+operatorButtons.forEach(operator => {
     operator.addEventListener("click", () => {
         //first operand has been typed
-        if (display.textContent !== "0" && fstOperand == 0) {
-            fstOperand = Number(display.textContent);
-            opertr = operator.textContent;
+        if (display.textContent !== "0" && firstOperand == 0) {
+            firstOperand = Number(display.textContent);
+            currentOperator = operator.textContent;
         //second operand has been typed or user wants to operate 
         //with equal first and second operands    
-        } else if (fstOperand !== 0 && opertrToggled === 1){            
-            sndOperand = Number(display.textContent);
-            let result = operate(fstOperand, opertr, sndOperand);
-            display.textContent = "";
-            display.textContent = result;
-            fstOperand = result;
-            opertrToggled = 0;          
-        }
+        } else if (firstOperand && operatorToggled) evaluate();
     })
 })
 
-equalSign.addEventListener("click", () => {
-    if (opertr!=0 && opertrToggled == 1){
-        if (opertr!=0){
-        sndOperand = Number(display.textContent);
-        let result = operate(fstOperand, opertr, sndOperand);
-        display.textContent = "";
-        display.textContent = result;
-        fstOperand = result;
-        opertrToggled = 0;  
-    }
+equalButton.addEventListener("click", () => {
+    if (currentOperator && operatorToggled){
+        if (currentOperator) evaluate();
 }}
 )
